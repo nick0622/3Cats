@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta char = "utf-8">
+        <title>隨機背景色</title>
+        <style type = "text/css">
+            .btn{
+                width: 100px;font-size: 1.2em;
+                border: 1px solid lightgray;
+                margin: 100px auto;padding: 10px;
+                text-align: center;
+                cursor: pointer;border-radius: 8px;
+                background-color: rgb(165, 216, 248);
+                box-shadow: 2px 2px 2px rgb(84, 174, 204);
+                font-family: Monaco, Consolas, "Lucida Console", monospace;
+            }
+            .btn:hover {
+                border: 1px #C6C6C6 solid;
+                box-shadow: 1px 1px 1px #EAEAEA;
+                color: #333333;
+                background: #F7F7F7;
+            }
+        </style>
+        <script type = "text/javascript">
+            function changebgc(){
+                let bg = document.getElementById("bg");
+                bg.style.backgroundColor = randomRgbColor()
+            }
+            function randomRgbColor(){
+            var r = Math.ceil(Math.random() * 256);
+            var g = Math.ceil(Math.random() * 256);
+            var b = Math.ceil(Math.random() * 256);
+            var alpha = Math.random()
+            return `rgb(${r}, ${g}, ${b}, ${alpha})`;
+            }
+        </script>
+    </head>
+    <body id = "bg">
+        <div class = "btn" id = "btn" onclick = "changebgc()">Click Me</div>
+    </body>
+</html>
