@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta char = "utf-8">
+        <title>Move the Dot</title>
+        <style type = "text/css">
+            .dot{
+                width: 100px;height: 100px;
+                border-radius: 50px;
+                transition: transform 1s;
+                margin: 200px auto;
+            }
+            #text{
+                color: grey;
+                font-size: 30px;
+                text-align: center;
+            }
+            body{
+                background-color: rgb(160, 212, 245);
+            }
+        </style>
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script> 
+        <script src = "https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type = "text/babel">
+            class Dot extends React.Component{
+                constructor(props){
+                    super(props);
+                }
+                render(){
+                    return <div>
+                            <div className = "dot"></div>
+                            <div id = "text">Press Space Key to Move the Dot</div>
+                            </div>                            
+                }                
+            }
+            function randomRgbColor(){
+                var r = Math.ceil(Math.random() * 256);
+                var g = Math.ceil(Math.random() * 256);
+                var b = Math.ceil(Math.random() * 256);
+                var alpha = Math.random()
+                return `rgb(${r}, ${g}, ${b}, ${alpha})`;
+            }
+            onload = ()=>{
+                ReactDOM.render(<Dot/>, document.body)
+                let dot = document.getElementsByClassName("dot")[0]
+                dot.style.backgroundColor = randomRgbColor()
+                addEventListener("keydown", swing)
+            }
+            function swing(e){
+                let text = document.getElementById("text")
+                text.style.display = "none"
+                if (e.keyCode == 32){
+                    let width = document.body.clientWidth/2 -100
+                    let height = document.body.clientHeight/2 + 100
+                    console.log(width, height)
+                    let dot = document.getElementsByClassName("dot")[0]
+                    dot.style.transform = `translate(${Math.random()*2*width-width}px, ${Math.random()*2*height-height}px)`
+                    dot.style.backgroundColor = randomRgbColor()
+                }
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
