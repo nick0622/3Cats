@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta char = "utf-8">
+        <title>貓貓</title>
+        <style type = "text/css">
+            body{
+                text-align: center;
+            }
+            img{
+                width: 600px;
+                margin-top: 30px;
+                display: inline-block;
+            }
+            #btn{
+                margin: 30px auto;
+                border: 1px solid lightgrey;
+                border-radius: 10px;
+                background-color: rgb(192, 233, 231);
+                box-shadow: 3px 3px 8px lightseagreen;
+                font-size: 1.2em;padding: 6px;
+                width: 200px;cursor: pointer;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            }
+        </style>
+        <script type = "text/javascript">
+            onload = getPic();
+            function getPic(){
+                var req = new XMLHttpRequest();
+                req.open("get", "https://api.thecatapi.com/v1/images/search");
+                req.onload = function(){ // load事件，偵測連線的狀態結束
+                    let data = JSON.parse(this.responseText)
+                    let pic = document.getElementById("pic")
+                    pic.src = data[0]["url"]
+                }
+                req.send(); // 送出連線
+        }
+        </script>
+    </head>
+    <body style = "background-color: rgb(58, 56, 56);">
+        <img id = "pic" src = ""/>
+        <div id = "btn" onclick = "getPic()">CAT !!!</div>
+    </body>
+</html>
